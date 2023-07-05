@@ -21,12 +21,10 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.process.TokenizerFactory; 
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParserQuery;
-import edu.stanford.nlp.pipeline.ParserAnnotatorUtils;
 import edu.stanford.nlp.process.CoreLabelTokenFactory;
 import edu.stanford.nlp.process.PTBTokenizer;
 import edu.stanford.nlp.process.Tokenizer;
 import edu.stanford.nlp.semgraph.SemanticGraphFactory;
-import edu.stanford.nlp.semgraph.SemanticGraphUtils;
 import edu.stanford.nlp.trees.GrammaticalStructureFactory;
 import edu.stanford.nlp.trees.PennTreebankLanguagePack;
 import edu.stanford.nlp.trees.Tree;
@@ -116,7 +114,7 @@ public class ClausIE {
 	/** Clears and parses a new sentence. */
 	public void parse(String sentence) {
 		clear();
-		System.out.println(sentence); 
+		//System.out.println(sentence); 
 		Tokenizer tokes = tokenizerFactory.getTokenizer(new StringReader(sentence));  
 		List<CoreLabel> tokenizedSentence = tokes.tokenize();
 		lpq.parse(tokenizedSentence); // what about the confidence?
@@ -199,7 +197,7 @@ public class ClausIE {
 					xclausIE.xcomp = true;
 					xclausIE.clauses = ((XcompConstituent) clause.constituents.get(i)).getClauses();
 					
-					System.out.println("ClausIE, GeneratePropositions, clauses.count=" + xclausIE.clauses.size());
+					//System.out.println("ClausIE, GeneratePropositions, clauses.count=" + xclausIE.clauses.size());
 					
 					xclausIE.generatePropositions();
 					for (Proposition p : xclausIE.propositions) {

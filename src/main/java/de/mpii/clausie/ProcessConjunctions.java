@@ -115,7 +115,7 @@ public class ProcessConjunctions {
             	
                 IndexedWord newRoot = edge.getDependent();
                 SemanticGraph newSemanticGraph = new SemanticGraph(semanticGraph);
-                if(predet != null && predet.getDependent().lemma().equals("both"))
+                if(predet != null && predet.getDependent().lemma() !=null && predet.getDependent().lemma().equals("both"))
                 	constituent.getExcludedVertexes().add(predet.getDependent()); 
                 
                 IndexedConstituent newConstituent = constituent.clone();
