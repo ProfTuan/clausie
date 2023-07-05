@@ -1,98 +1,114 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.mpii</groupId>
-  <artifactId>clausie</artifactId>
-  <packaging>jar</packaging>
-  <version>0.0.3</version>
-  <name>clausie</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <jdk.version>1.8</jdk.version>
-    <junit.version>4.11</junit.version>
-  </properties>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.mpii</groupId>
+    <artifactId>clausie</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.3</version>
+    <name>clausie</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <jdk.version>11</jdk.version>
+        <junit.version>4.11</junit.version>
+    </properties>
 
-  <dependencies>
- <dependency>
-      <groupId>edu.stanford.nlp</groupId>
-      <artifactId>stanford-corenlp</artifactId>
-      <version>4.5.4</version> 
-      <!--  <version>3.7.0</version>-->
-     <type>jar</type>
- </dependency>
-    <dependency>
-      <groupId>edu.stanford.nlp</groupId>
-      <artifactId>stanford-corenlp</artifactId>
-      <version>3.9.2</version>
-      <!--  <version>3.7.0</version> -->
-      <classifier>models</classifier>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-parser -->
-    <dependency>
-      <groupId>edu.stanford.nlp</groupId>
-      <artifactId>stanford-parser</artifactId>
-      <version>3.9.2</version> 
-      <!--  <version>3.7.0</version>-->
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/net.sf.jopt-simple/jopt-simple -->
-<dependency>
-    <groupId>net.sf.jopt-simple</groupId>
-    <artifactId>jopt-simple</artifactId>
-    <version>5.0.4</version>
-</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>4.5.4</version> 
+            <!--  <version>3.7.0</version>-->
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>3.9.2</version>
+            <!--  <version>3.7.0</version> -->
+            <classifier>models</classifier>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-parser -->
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-parser</artifactId>
+            <version>3.9.2</version> 
+            <!--  <version>3.7.0</version>-->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jopt-simple/jopt-simple -->
+        <dependency>
+            <groupId>net.sf.jopt-simple</groupId>
+            <artifactId>jopt-simple</artifactId>
+            <version>5.0.4</version>
+        </dependency>
 
-  </dependencies>
-
-
-  <build>
-    <finalName>clausie</finalName>
-    <plugins>
-
-      <!-- download source code in Eclipse, best practice -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-eclipse-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-          <downloadSources>true</downloadSources>
-          <downloadJavadocs>false</downloadJavadocs>
-        </configuration>
-      </plugin>
-
-      <!-- Set a compiler level -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>${jdk.version}</source>
-          <target>${jdk.version}</target>
-        </configuration>
-      </plugin>
+    </dependencies>
 
 
-      <plugin>
-    <groupId>com.jolira</groupId>
-    <artifactId>onejar-maven-plugin</artifactId>
-    <executions>
-        <execution>
-            <configuration>
-                <attachToBuild>true</attachToBuild>
-                <filename>
-                  ${project.build.finalName}.${project.packaging}
-                </filename>
-            </configuration>
-            <goals>
-                <goal>one-jar</goal>
-            </goals>
-        </execution>
-    </executions>
-</plugin>
+    <build>
+        <finalName>clausie</finalName>
+        <plugins>
 
+            <!-- download source code in Eclipse, best practice -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>false</downloadJavadocs>
+                </configuration>
+            </plugin>
+
+            <!-- Set a compiler level -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                           <minimizeJar>false</minimizeJar>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+                        <plugin>
+                            <groupId>com.jolira</groupId>
+                            <artifactId>onejar-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <configuration>
+                                        <attachToBuild>true</attachToBuild>
+                                        <filename>
+                                            ${project.build.finalName}.${project.packaging}
+                                        </filename>
+                                    </configuration>
+                                    <goals>
+                                        <goal>one-jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
  
 
-    </plugins>
-  </build>
+        </plugins>
+    </build>
 
 
 </project>
