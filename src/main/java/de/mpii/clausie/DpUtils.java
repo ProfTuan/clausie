@@ -114,7 +114,9 @@ public class DpUtils {
 
     /** Checks if a given edge holds an object relation */
     public static boolean isAnyObj(SemanticGraphEdge edge) {
-        return UniversalEnglishGrammaticalRelations.OBJECT.isAncestor(edge.getRelation());
+        return false; 
+        
+        //return UniversalEnglishGrammaticalRelations.OBJECT.isAncestor(edge.getRelation());
     }
 
     /** Checks if a given edge holds a prepositional object relation*/
